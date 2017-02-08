@@ -22,7 +22,7 @@ export class MessageService {
 			? '?token=' + localStorage.getItem('token')
 			: '';
 
-		return this.http.post('http://localhost:3000/message' + token, body, {headers: headers})
+		return this.http.post('http://badmin.herokuapp.com/message' + token, body, {headers: headers})
 			.map((response: Response) => {
 				const result = response.json();
 				const message = new Message(
@@ -40,7 +40,7 @@ export class MessageService {
 	}
 
 	getMessages() {
-		return this.http.get('http://localhost:3000/message')
+		return this.http.get('http://badmin.herokuapp.com/message')
 			.map((response: Response) => {
 				const messages = response.json().obj;
 				let transformedMessages: Message[] = [];
@@ -73,7 +73,7 @@ export class MessageService {
 			? '?token=' + localStorage.getItem('token')
 			: '';
 
-		return this.http.patch('http://localhost:3000/message/' + message.messageId + token, body, {headers: headers})
+		return this.http.patch('http://badmin.herokuapp.com/message/' + message.messageId + token, body, {headers: headers})
 			.map((response: Response) => response.json())
 			.catch((error: Response) => {
 				this.errorService.handleError(error.json())
@@ -88,7 +88,7 @@ export class MessageService {
 			? '?token=' + localStorage.getItem('token')
 			: '';
 
-		return this.http.delete('http://localhost:3000/message/' + message.messageId + token)
+		return this.http.delete('http://badmin.herokuapp.com/message/' + message.messageId + token)
 			.map((response: Response) => response.json())
 			.catch((error: Response) => {
 				this.errorService.handleError(error.json())
