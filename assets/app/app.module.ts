@@ -11,6 +11,7 @@ import { AuthService } from "./auth/auth.service"
 import { ErrorComponent } from "./errors/error.component";
 import { ErrorService } from "./errors/error.service";
 import { MessageModule } from "./messages/message.module";
+import { LeagueModule } from "./leagues/league.module";
 import { AuthModule } from "./auth/auth.module";
 
 @NgModule({
@@ -21,9 +22,10 @@ import { AuthModule } from "./auth/auth.module";
         ErrorComponent
     ],
     imports: [      // adding to this UNLOCKS the service so they can be injected in the app
-    	BrowserModule, 
+    	BrowserModule,
     	HttpModule,
         MessageModule,
+        LeagueModule,
         AuthModule,
     	routing
     ],
@@ -34,5 +36,5 @@ import { AuthModule } from "./auth/auth.module";
     bootstrap: [AppComponent]
 })
 export class AppModule {
-	
+
 }

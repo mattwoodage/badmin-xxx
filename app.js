@@ -8,11 +8,13 @@ var mongoose = require('mongoose');
 
 var appRoutes = require('./routes/app');
 var messageRoutes = require('./routes/messages');
+var leagueRoutes = require('./routes/leagues');
+var seasonRoutes = require('./routes/seasons');
 var userRoutes = require('./routes/user');
 
 var app = express();
-//mongoose.connect('localhost:27017/badmin');
-mongoose.connect('test-user:test-pw@ds145009.mlab.com:45009/badmin')
+mongoose.connect('localhost:27017/badmin');
+//mongoose.connect('test-user:test-pw@ds145009.mlab.com:45009/badmin')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -37,6 +39,8 @@ app.use(function (req, res, next) {
 
 //the order of these is important.  more specific FIRST
 app.use('/message', messageRoutes);
+app.use('/league', leagueRoutes);
+app.use('/season', SeasonRoutes);
 app.use('/user', userRoutes);
 app.use('/', appRoutes);
 

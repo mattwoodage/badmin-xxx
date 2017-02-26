@@ -18,17 +18,17 @@ export class MessageService {
 
 		const body = JSON.stringify(message);
 		const headers = new Headers({'Content-Type': 'application/json'});
-		const token = localStorage.getItem('token') 
+		const token = localStorage.getItem('token')
 			? '?token=' + localStorage.getItem('token')
 			: '';
 
-		return this.http.post('http://badmin.herokuapp.com/message' + token, body, {headers: headers})
+		return this.http.post('/message' + token, body, {headers: headers})
 			.map((response: Response) => {
 				const result = response.json();
 				const message = new Message(
-					result.obj.content, 
+					result.obj.content,
 					result.obj.user.firstName,
-					result.obj._id, 
+					result.obj._id,
 					result.obj.user._id);
 				this.messages.push(message);
 				return message;
@@ -40,15 +40,15 @@ export class MessageService {
 	}
 
 	getMessages() {
-		return this.http.get('http://badmin.herokuapp.com/message')
+		return this.http.get('/message')
 			.map((response: Response) => {
 				const messages = response.json().obj;
 				let transformedMessages: Message[] = [];
 				for (let message of messages) {
 					transformedMessages.push(new Message(
-						message.content, 
-						message.user.firstName, 
-						message._id, 
+						message.content,
+						message.user.firstName,
+						message._id,
 						message.user._id)
 					);
 				}
@@ -69,11 +69,11 @@ export class MessageService {
 		const body = JSON.stringify(message);
 		const headers = new Headers({'Content-Type': 'application/json'});
 
-		const token = localStorage.getItem('token') 
+		const token = localStorage.getItem('token')
 			? '?token=' + localStorage.getItem('token')
 			: '';
 
-		return this.http.patch('http://badmin.herokuapp.com/message/' + message.messageId + token, body, {headers: headers})
+		return this.http.patch('/message/' + message.messageId + token, body, {headers: headers})
 			.map((response: Response) => response.json())
 			.catch((error: Response) => {
 				this.errorService.handleError(error.json())
@@ -84,11 +84,11 @@ export class MessageService {
 	deleteMessage(message: Message) {
 		this.messages.splice(this.messages.indexOf(message), 1);
 
-		const token = localStorage.getItem('token') 
+		const token = localStorage.getItem('token')
 			? '?token=' + localStorage.getItem('token')
 			: '';
 
-		return this.http.delete('http://badmin.herokuapp.com/message/' + message.messageId + token)
+		return this.http.delete('/message/' + message.messageId + token)
 			.map((response: Response) => response.json())
 			.catch((error: Response) => {
 				this.errorService.handleError(error.json())

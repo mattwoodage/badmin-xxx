@@ -6,8 +6,8 @@ var League = require('./league');
 
 var schema = new Schema({
   name: {type: String, required: true},
-  league: {type: Schema.Types.ObjectId, ref: 'League'},
-  status: {type: String, required: false}
+  status: {type: String, required: false},
+  league: {type: Schema.Types.ObjectId, ref: 'League'}
 });
 
 schema.plugin(mongooseUniqueValidator);
