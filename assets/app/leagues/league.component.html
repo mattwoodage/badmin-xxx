@@ -1,0 +1,14 @@
+<article class="panel panel-default">
+	<div class="panel-body">
+	{{ league.name }}
+	</div>
+	<footer class="panel-footer">
+		<div class="author">
+			{{ league.url }}    {{ league.status }}
+		</div>
+		<div class="config">
+			<a (click)="onEdit()">Edit</a>
+			<a (click)="onDelete()">Delete</a>
+		</div>
+	</footer>
+</article>
