@@ -8,6 +8,16 @@ import { Component } from "@angular/core";
 				<ul class="nav nav-pills">
 					<li routerLinkActive="active"><a [routerLink]="['/messages']">Messenger</a></li>
 					<li routerLinkActive="active"><a [routerLink]="['/leagues']">Leagues</a></li>
+					<li routerLinkActive="active"><a [routerLink]="['/seasons']">Seasons</a></li>
+					<li routerLinkActive="active"><a [routerLink]="['/divisions']">Divisions</a></li>
+					<li routerLinkActive="active"><a [routerLink]="['/formats']">Formats</a></li>
+
+					<li routerLinkActive="active"><a [routerLink]="['/matches']">Matches</a></li>
+
+					<li routerLinkActive="active"><a [routerLink]="['/venues']">Venues</a></li>
+					<li routerLinkActive="active"><a [routerLink]="['/clubs']">Clubs</a></li>
+					<li routerLinkActive="active"><a [routerLink]="['/teams']">Teams</a></li>
+					<li routerLinkActive="active"><a [routerLink]="['/players']">Players</a></li>
 					<li routerLinkActive="active"><a [routerLink]="['/auth']">Authentication</a></li>
 				</ul>
 			</nav>

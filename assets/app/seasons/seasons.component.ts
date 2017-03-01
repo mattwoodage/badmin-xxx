@@ -1,20 +1,20 @@
 import { Component } from "@angular/core";
 
 @Component({
-	selector: 'app-leagues',
+	selector: 'app-seasons',
 	template: `
 		<div class='row'>
 			<div class='col-md-4'>
-			<app-league-list></app-league-list>
+			<app-season-list></app-season-list>
 			</div>
 			<div class='col-md-8'>
-			<app-league-input></app-league-input>
+			<app-season-input></app-season-input>
 			</div>
 
 		</div>
 	`
 })
 
-export class LeaguesComponent {
+export class SeasonsComponent {
 
 }

@@ -1,10 +1,10 @@
 import { Component, Input } from "@angular/core";
-import { League } from "./league.model";
-import { LeagueService } from "./league.service";
+import { Season } from "./season.model";
+import { SeasonService } from "./season.service";
 
 @Component({
-	selector: 'app-league',
-	templateUrl: './league.component.html',
+	selector: 'app-season',
+	templateUrl: './season.component.html',
 	styles: [`
     	.author {
     		display: inline-block;
@@ -21,18 +21,18 @@ import { LeagueService } from "./league.service";
     `]
 })
 
-export class LeagueComponent {
-    @Input() league: League;
+export class SeasonComponent {
+    @Input() season: Season;
 
 
-    constructor(private leagueService: LeagueService) {};
+    constructor(private seasonService: SeasonService) {};
 
     onEdit() {
-       this.leagueService.editLeague(this.league);
+       this.seasonService.editSeason(this.season);
     }
 
     onDelete() {
-        this.leagueService.deleteLeague(this.league)
+        this.seasonService.deleteSeason(this.season)
         	.subscribe(
         		result => console.log(result)
         	);

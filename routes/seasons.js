@@ -1,15 +1,16 @@
 var express = require('express');
 var router = express.Router();
 var jwt = require('jsonwebtoken');
-var League = require('../models/league');   //backend mongoose model
+var Season = require('../models/season');   //backend mongoose model
 
-//routes here appended to /league  from top level app.js
+//routes here appended to /seanso  from top level app.js
 
 // these are processed in order
 
 router.get('/', function (req, res, next) {
-	League.find()
-		.exec(function(err, leagues) {
+	Season.find()
+		.sort({name: -1})
+		.exec(function(err, seasons) {
 			if (err) {
 	    		return res.status(500).json({
 	    			title: 'An error occurred',
@@ -17,8 +18,8 @@ router.get('/', function (req, res, next) {
 	    		});
 	    	}
 	    	res.status(201).json({
-	    		league: 'Success',
-	    		obj: leagues
+	    		message: 'Success',
+	    		obj: seasons
 	    	});
 		});;
 })
@@ -43,22 +44,22 @@ router.post('/', function (req, res, next) {
 
 	var decoded = jwt.decode(req.query.token);
 
-    	var league = new League({
+    	var season = new Season({
 	    	name: req.body.name,
-	    	url: req.body.url,
-	    	status: req.body.status
+	    	status: req.body.status,
+	    	league: req.body.league
 	    });
-	    league.save(function(err, result) {
+	    season.save(function(err, result) {
 	    	if (err) {
 	    		return res.status(500).json({
 	    			title: 'An error occurred',
 	    			error: err
 	    		});
 	    	}
-	    	// user.leagues.push(result);
+	    	// user.seasons.push(result);
 	    	// user.save();
 	    	res.status(201).json({
-	    		league: 'Saved League',
+	    		message: 'Saved Season',
 	    		obj: result  /// saved league from db - id etc.
 	    	});
 	    });
@@ -69,23 +70,23 @@ router.patch('/:id', function (req, res, next) {
 
 	var decoded = jwt.decode(req.query.token);
 
-	League.findById(req.params.id, function(err, league) {
+	Season.findById(req.params.id, function(err, season) {
 		if (err) {
 			return res.status(500).json({
     			title: 'An error occurred',
     			error: err
     		});
 		}
-		if (!league) {
+		if (!season) {
 			return res.status(500).json({
-    			title: 'No league found!',
-    			error: {league: 'League not found'}
+    			title: 'No season found!',
+    			error: {message: 'Season not found'}
     		});
 		}
-		league.name = req.body.name;
-		league.url = req.body.url;
-		league.status = req.body.status;
-		league.save(function(err, result) {
+		season.name = req.body.name;
+		season.status = req.body.status;
+		season.league = req.body.league;
+		season.save(function(err, result) {
 			if (err) {
 				return res.status(500).json({
 	    			title: 'An error occurred',
@@ -93,7 +94,7 @@ router.patch('/:id', function (req, res, next) {
 	    		});
 	    	}
 			res.status(200).json({
-    			title: 'League updated',
+    			title: 'Season updated',
     			error: result
     		});
 		})
@@ -104,20 +105,20 @@ router.delete('/:id', function (req, res, next) {
 
 	var decoded = jwt.decode(req.query.token);
 
-	League.findById(req.params.id, function(err, league) {
+	Season.findById(req.params.id, function(err, season) {
 		if (err) {
 			return res.status(500).json({
     			title: 'An error occurred',
     			error: err
     		});
 		}
-		if (!league) {
+		if (!season) {
 			return res.status(500).json({
-    			title: 'No league found!',
-    			error: {league: 'League not found'}
+    			title: 'No season found!',
+    			error: {message: 'Season not found'}
     		});
 		}
-		league.remove(function(err, result) {
+		season.remove(function(err, result) {
 			if (err) {
 				return res.status(500).json({
 	    			title: 'An error occurred',
@@ -125,7 +126,7 @@ router.delete('/:id', function (req, res, next) {
 	    		});
 	    	}
 			res.status(200).json({
-    			title: 'League deleted',
+    			title: 'Season deleted',
     			error: result
     		});
 		})

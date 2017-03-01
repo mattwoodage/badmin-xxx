@@ -10,4 +10,5 @@ export class League {
 		this.status = status;
 		this.leagueId = leagueId;
 	}
+
 }

@@ -1,7 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
-import { LeagueService } from "./league.service";
+import { SeasonService } from "./season.service";
 import { Season } from "./season.model";
+import { League } from "../leagues/league.model";
+import { LeagueService } from "../leagues/league.service";
 
 @Component({
 	selector: 'app-season-input',
@@ -12,22 +14,25 @@ export class SeasonInputComponent implements OnInit {
 
 	season: Season;
 
-	constructor(private seasonService: SeasonService) {}
+	leagues: League[];
+
+	constructor(private seasonService: SeasonService, private leagueService: LeagueService) {}
 	onSubmit(form: NgForm) {
 		if (this.season) {
 			// Edit
-			this.league.name = form.value.name;
-			this.league.status = form.value.status;
-			this.league.url = form.value.url;
-			this.leagueService.updateLeague(this.league)
+			this.season.name = form.value.name;
+			this.season.status = form.value.status;
+			this.season.league = form.value.league;
+
+			this.seasonService.updateSeason(this.season)
 				.subscribe(
 					result => console.log(result)
 				)
-			this.league = null;
+			this.season = null;
 		} else {
 			// Create
-			const league = new League(form.value.name, form.value.url, form.value.status);
-			this.leagueService.addLeague(league)
+			const season = new Season(form.value.name, form.value.status, form.value.league);
+			this.seasonService.addSeason(season)
 				.subscribe(
 					data => console.log(data),
 					error => console.error(error)
@@ -36,14 +41,22 @@ export class SeasonInputComponent implements OnInit {
 		form.resetForm();
 	}
 
+
 	onClear(form: NgForm) {
-		this.league = null;
+		this.season = null;
 		form.resetForm();
 	}
 
 	ngOnInit() {
-		this.leagueService.leagueIsEdit.subscribe(
-			(league: League) => this.league = league
+		this.seasonService.seasonIsEdit.subscribe(
+			(season: Season) => this.season = season
 		);
+
+		this.leagueService.getLeagues()
+    		.subscribe(
+    			(leagues: League[]) => {
+    				this.leagues = leagues;
+    			}
+    		);
 	}
 }

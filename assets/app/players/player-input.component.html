@@ -1,0 +1,64 @@
+<div class="">
+	<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+		<div class="form-group">
+			<label for="content">Name</label>
+			<input
+				type="text"
+				id="name"
+				class="form-control"
+				[ngModel]="format?.name"
+				name="name"
+				required
+				>
+		</div>
+		<div class="form-group">
+			<label for="url">Type</label>
+			<input
+				type="text"
+				id="type"
+				class="form-control"
+				[ngModel]="format?.type"
+				name="type"
+				required
+				>
+		</div>
+		<div class="form-group">
+			<label for="status">Order of Play</label>
+			<input
+				type="text"
+				id="orderOfPlay"
+				class="form-control"
+				[ngModel]="format?.orderOfPlay"
+				name="orderOfPlay"
+				required
+				>
+		</div>
+		<div class="form-group">
+			<label for="status">Num Rubbers</label>
+			<input
+				type="text"
+				id="numRubbers"
+				class="form-control"
+				[ngModel]="format?.numRubbers"
+				name="numRubbers"
+				required
+				>
+		</div>
+		<div class="form-group">
+			<label for="status">Num Games</label>
+			<input
+				type="text"
+				id="numGames"
+				class="form-control"
+				[ngModel]="format?.numGames"
+				name="numGames"
+				required
+				>
+		</div>
+		<button class="btn btn-danger" type="button" (click)="onClear(f)">Clear</button>
+		<button class="btn btn-primary" type="submit">Save</button>
+
+		<div class="row">
+		</div>
+	</form>
+</div>

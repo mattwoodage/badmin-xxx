@@ -96,5 +96,9 @@ export class LeagueService {
 				return Observable.throw(error.json())
 			});
 	}
+
+	getLeague(id: String) {
+
+	}
 }
 

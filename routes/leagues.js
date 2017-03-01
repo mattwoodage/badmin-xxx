@@ -17,7 +17,7 @@ router.get('/', function (req, res, next) {
 	    		});
 	    	}
 	    	res.status(201).json({
-	    		league: 'Success',
+	    		message: 'Success',
 	    		obj: leagues
 	    	});
 		});;
@@ -58,7 +58,7 @@ router.post('/', function (req, res, next) {
 	    	// user.leagues.push(result);
 	    	// user.save();
 	    	res.status(201).json({
-	    		league: 'Saved League',
+	    		message: 'Saved League',
 	    		obj: result  /// saved league from db - id etc.
 	    	});
 	    });
@@ -79,7 +79,7 @@ router.patch('/:id', function (req, res, next) {
 		if (!league) {
 			return res.status(500).json({
     			title: 'No league found!',
-    			error: {league: 'League not found'}
+    			error: {message: 'League not found'}
     		});
 		}
 		league.name = req.body.name;
@@ -114,7 +114,7 @@ router.delete('/:id', function (req, res, next) {
 		if (!league) {
 			return res.status(500).json({
     			title: 'No league found!',
-    			error: {league: 'League not found'}
+    			error: {message: 'League not found'}
     		});
 		}
 		league.remove(function(err, result) {

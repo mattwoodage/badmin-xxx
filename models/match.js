@@ -2,13 +2,18 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var mongooseUniqueValidator = require('mongoose-unique-validator');
 
-var Season = require('./season');
-var Format = require('./format');
+var Division = require('./division');
+var Team = require('./team');
+var Venue = require('./venue');
 
 var schema = new Schema({
 	name: {type: String, required: true},
-	format: {type: Schema.Types.ObjectId, ref: 'Format'},
-  season: {type: Schema.Types.ObjectId, ref: 'Season'}
+	division: {type: Schema.Types.ObjectId, ref: 'Division'}
+	venue: {type: Schema.Types.ObjectId, ref: 'Venue'}
+
+	home_team: {type: Schema.Types.ObjectId, ref: 'Team'}
+	away_team: {type: Schema.Types.ObjectId, ref: 'Team'}
+
 });
 
 schema.plugin(mongooseUniqueValidator);

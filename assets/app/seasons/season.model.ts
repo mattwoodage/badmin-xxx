@@ -1,13 +1,24 @@
-export class League {
+export class Season {
 	name: string;
-	url: string;
 	status: string;
-	leagueId?: string;
+	league: string;
+	seasonId?: string;
 
-	constructor(name: string, url: string, status: string, leagueId?: string) {
+	constructor(name: string, status: string, league: string, seasonId?: string) {
 		this.name = name;
-		this.url = url;
 		this.status = status;
-		this.leagueId = leagueId;
+		this.league = league;
+		this.seasonId = seasonId;
 	}
+
+
+	desc() {
+		return this.name + " " + this.status
+	}
+
+	leagueName() {
+		return this.league
+	}
+
+
 }

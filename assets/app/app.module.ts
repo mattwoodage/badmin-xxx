@@ -12,6 +12,13 @@ import { ErrorComponent } from "./errors/error.component";
 import { ErrorService } from "./errors/error.service";
 import { MessageModule } from "./messages/message.module";
 import { LeagueModule } from "./leagues/league.module";
+import { SeasonModule } from "./seasons/season.module";
+import { DivisionModule } from "./divisions/division.module";
+import { FormatModule } from "./formats/format.module";
+import { ClubModule } from "./clubs/club.module";
+import { TeamModule } from "./teams/team.module";
+import { VenueModule } from "./venues/venue.module";
+
 import { AuthModule } from "./auth/auth.module";
 
 @NgModule({
@@ -26,6 +33,12 @@ import { AuthModule } from "./auth/auth.module";
     	HttpModule,
         MessageModule,
         LeagueModule,
+        SeasonModule,
+        DivisionModule,
+        FormatModule,
+        ClubModule,
+        TeamModule,
+        VenueModule,
         AuthModule,
     	routing
     ],

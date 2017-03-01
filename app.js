@@ -10,6 +10,11 @@ var appRoutes = require('./routes/app');
 var messageRoutes = require('./routes/messages');
 var leagueRoutes = require('./routes/leagues');
 var seasonRoutes = require('./routes/seasons');
+var divisionRoutes = require('./routes/divisions');
+var formatRoutes = require('./routes/formats');
+var venueRoutes = require('./routes/venues');
+var clubRoutes = require('./routes/clubs');
+var teamRoutes = require('./routes/teams');
 var userRoutes = require('./routes/user');
 
 var app = express();
@@ -40,7 +45,13 @@ app.use(function (req, res, next) {
 //the order of these is important.  more specific FIRST
 app.use('/message', messageRoutes);
 app.use('/league', leagueRoutes);
-app.use('/season', SeasonRoutes);
+app.use('/season', seasonRoutes);
+app.use('/division', divisionRoutes);
+app.use('/format', formatRoutes);
+app.use('/venue', venueRoutes);
+app.use('/club', clubRoutes);
+app.use('/team', teamRoutes);
+
 app.use('/user', userRoutes);
 app.use('/', appRoutes);
 

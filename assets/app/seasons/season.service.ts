@@ -3,36 +3,36 @@ import { Injectable, EventEmitter } from "@angular/core";
 import 'rxjs';
 import { Observable } from "rxjs";
 
-import { League } from "./league.model";
+import { Season } from "./season.model";
 import { ErrorService } from "../errors/error.service";
 
 @Injectable()  // this does nothing except adds metadata so the injector can work on this class
 
-export class LeagueService {
-	private leagues: League[] = [];
-	leagueIsEdit = new EventEmitter<League>();
+export class SeasonService {
+	private seasons: Season[] = [];
+	seasonIsEdit = new EventEmitter<Season>();
 
 	constructor(private http: Http, private errorService: ErrorService) {}
 
-	addLeague(league: League) {
+	addSeason(season: Season) {
 
-		const body = JSON.stringify(league);
+		const body = JSON.stringify(season);
 		const headers = new Headers({'Content-Type': 'application/json'});
 		const token = localStorage.getItem('token')
 			? '?token=' + localStorage.getItem('token')
 			: '';
 
-		return this.http.post('/league' + token, body, {headers: headers})
+		return this.http.post('/season' + token, body, {headers: headers})
 			.map((response: Response) => {
 				const result = response.json();
-				const league = new League(
+				const season = new Season(
 					result.obj.name,
-					result.obj.url,
 					result.obj.status,
+					result.obj.league,
 					result.obj._id
 					);
-				this.leagues.push(league);
-				return league;
+				this.seasons.push(season);
+				return season;
 			})
 			.catch((error: Response) => {
 				this.errorService.handleError(error.json())
@@ -40,21 +40,21 @@ export class LeagueService {
 			});
 	}
 
-	getLeagues() {
-		return this.http.get('/league')
+	getSeasons() {
+		return this.http.get('/season')
 			.map((response: Response) => {
-				const leagues = response.json().obj;
-				let transformedLeagues: League[] = [];
-				for (let league of leagues) {
-					transformedLeagues.push(new League(
-						league.name,
-						league.url,
-						league.status,
-						league._id)
+				const seasons = response.json().obj;
+				let transformedSeasons: Season[] = [];
+				for (let season of seasons) {
+					transformedSeasons.push(new Season(
+						season.name,
+						season.status,
+						season.league,
+						season._id)
 					);
 				}
-				this.leagues = transformedLeagues;
-				return transformedLeagues;
+				this.seasons = transformedSeasons;
+				return transformedSeasons;
 			})
 			.catch((error: Response) => {
 				this.errorService.handleError(error.json())
@@ -62,19 +62,19 @@ export class LeagueService {
 			});
 	}
 
-	editLeague(league: League) {
-		this.leagueIsEdit.emit(league);
+	editSeason(season: Season) {
+		this.seasonIsEdit.emit(season);
 	}
 
-	updateLeague(league: League) {
-		const body = JSON.stringify(league);
+	updateSeason(season: Season) {
+		const body = JSON.stringify(season);
 		const headers = new Headers({'Content-Type': 'application/json'});
 
 		const token = localStorage.getItem('token')
 			? '?token=' + localStorage.getItem('token')
 			: '';
 
-		return this.http.patch('/league/' + league.leagueId + token, body, {headers: headers})
+		return this.http.patch('/season/' + season.seasonId + token, body, {headers: headers})
 			.map((response: Response) => response.json())
 			.catch((error: Response) => {
 				this.errorService.handleError(error.json())
@@ -82,14 +82,14 @@ export class LeagueService {
 			});
 	}
 
-	deleteLeague(league: League) {
-		this.leagues.splice(this.leagues.indexOf(league), 1);
+	deleteSeason(season: Season) {
+		this.seasons.splice(this.seasons.indexOf(season), 1);
 
 		const token = localStorage.getItem('token')
 			? '?token=' + localStorage.getItem('token')
 			: '';
 
-		return this.http.delete('/league/' + league.leagueId + token)
+		return this.http.delete('/season/' + season.seasonId + token)
 			.map((response: Response) => response.json())
 			.catch((error: Response) => {
 				this.errorService.handleError(error.json())

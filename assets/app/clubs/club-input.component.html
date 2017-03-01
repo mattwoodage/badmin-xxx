@@ -1,0 +1,71 @@
+<div class="">
+	<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+		<div class="form-group">
+			<label for="content">Name</label>
+			<input
+				type="text"
+				id="name"
+				class="form-control"
+				[ngModel]="club?.name"
+				name="name"
+				required
+				>
+		</div>
+		<div class="form-group">
+			<label for="url">Description</label>
+			<input
+				type="text"
+				id="description"
+				class="form-control"
+				[ngModel]="club?.description"
+				name="description"
+				>
+		</div>
+		<div class="form-group">
+			<label for="status">Adults</label>
+			<input
+				type="checkbox"
+				id="adults"
+				class="form-control"
+				[ngModel]="club?.adults"
+				name="adults"
+				>
+		</div>
+		<div class="form-group">
+			<label for="status">Juniors</label>
+			<input
+				type="checkbox"
+				id="juniors"
+				class="form-control"
+				[ngModel]="club?.juniors"
+				name="juniors"
+				>
+		</div>
+
+		<div class="form-group">
+			<label for="url">Members</label>
+			<input
+				type="number"
+				id="members"
+				class="form-control"
+				[ngModel]="club?.members"
+				name="members"
+				>
+		</div>
+		<div class="form-group">
+			<label for="url">Website</label>
+			<input
+				type="text"
+				id="website"
+				class="form-control"
+				[ngModel]="club?.website"
+				name="website"
+				>
+		</div>
+		<button class="btn btn-danger" type="button" (click)="onClear(f)">Clear</button>
+		<button class="btn btn-primary" type="submit">Save</button>
+
+		<div class="row">
+		</div>
+	</form>
+</div>

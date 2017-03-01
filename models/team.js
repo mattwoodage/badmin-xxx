@@ -6,9 +6,8 @@ var Division = require('./division');
 var Club = require('./club');
 
 var schema = new Schema({
-	name: {type: String, required: true},
-  suffix: {type: String, required: true},
-  club: {type: Schema.Types.ObjectId, ref: 'Club'}
+	suffix: {type: String, required: false},
+  	club: {type: Schema.Types.ObjectId, ref: 'Club'},
 	division: {type: Schema.Types.ObjectId, ref: 'Division'}
 });
 
