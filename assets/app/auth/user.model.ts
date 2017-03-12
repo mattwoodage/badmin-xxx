@@ -11,4 +11,8 @@ export class User {
 		this.password = password;
 		this.email = email;
 	}
+
+	full_name() {
+		return [this.firstName, this.lastName].join(' ')
+	}
 }

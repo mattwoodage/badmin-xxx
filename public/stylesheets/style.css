@@ -1,6 +1,24 @@
 body {
-  padding: 50px;
+  background-color:#333;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.top {
+	background-color:#f8f7f6;
+	color:#333;
+}
+
+.row.auth {
+	background-color:#333;
+	color:#fff;
+}
+
+.header, .footer {
+	background-color:#ffd400;
+}
+
+.main {
+  padding:20px 0px;
 }
 
 a {

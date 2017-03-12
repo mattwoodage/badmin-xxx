@@ -16,9 +16,9 @@ export class SigninComponent implements OnInit {
 	constructor(private authService: AuthService, private router: Router) {}
 
 	onSubmit() {
-		
+
 		const user = new User(
-			'F','L',this.myForm.value.password, 
+			'F','L',this.myForm.value.password,
 			this.myForm.value.email
 		);
 
@@ -27,11 +27,12 @@ export class SigninComponent implements OnInit {
 				data => {
 					localStorage.setItem('token', data.token);
 					localStorage.setItem('userId', data.userId);
-					this.router.navigateByUrl('/');
+					localStorage.setItem('user', JSON.stringify(data.user));
+					this.router.navigateByUrl('/:season/home');
 				},
 				error => console.error(error)
 			)
-		
+
 		this.myForm.reset();
 	}
 

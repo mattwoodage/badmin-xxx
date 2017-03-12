@@ -1,3 +1,4 @@
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -15,6 +16,8 @@ var formatRoutes = require('./routes/formats');
 var venueRoutes = require('./routes/venues');
 var clubRoutes = require('./routes/clubs');
 var teamRoutes = require('./routes/teams');
+var matchRoutes = require('./routes/matches');
+var playerRoutes = require('./routes/players');
 var userRoutes = require('./routes/user');
 
 var app = express();
@@ -51,6 +54,8 @@ app.use('/format', formatRoutes);
 app.use('/venue', venueRoutes);
 app.use('/club', clubRoutes);
 app.use('/team', teamRoutes);
+app.use('/match', matchRoutes);
+app.use('/player', playerRoutes);
 
 app.use('/user', userRoutes);
 app.use('/', appRoutes);

@@ -7,8 +7,8 @@ var Club = require('./club');
 
 var schema = new Schema({
 	suffix: {type: String, required: false},
-  	club: {type: Schema.Types.ObjectId, ref: 'Club'},
-	division: {type: Schema.Types.ObjectId, ref: 'Division'}
+  	club: {type: Schema.Types.ObjectId, ref: 'Club', required: true},
+	division: {type: Schema.Types.ObjectId, ref: 'Division', required: true}
 });
 
 schema.plugin(mongooseUniqueValidator);
