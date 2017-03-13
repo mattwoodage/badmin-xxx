@@ -18,15 +18,13 @@ export class LeagueService {
 
 		const body = JSON.stringify(league);
 		const headers = new Headers({'Content-Type': 'application/json'});
-		const token = localStorage.getItem('token')
-			? '?token=' + localStorage.getItem('token')
-			: '';
 
-		return this.http.post('/league' + token, body, {headers: headers})
+		return this.http.post('/league' + this.tokenParam(), body, {headers: headers})
 			.map((response: Response) => {
 				const result = response.json();
 				const league = new League(
 					result.obj.name,
+					result.obj.domain,
 					result.obj.url,
 					result.obj.status,
 					result.obj._id
@@ -35,8 +33,6 @@ export class LeagueService {
 				return league;
 			})
 			.catch((error: Response) => {
-				alert('xxx');
-				console.log(error);
 				this.errorService.handleError(error.json())
 				return Observable.throw(error.json())
 			});
@@ -50,6 +46,7 @@ export class LeagueService {
 				for (let league of leagues) {
 					transformedLeagues.push(new League(
 						league.name,
+						league.domain,
 						league.url,
 						league.status,
 						league._id)
@@ -59,8 +56,6 @@ export class LeagueService {
 				return transformedLeagues;
 			})
 			.catch((error: Response) => {
-				alert('xxx');
-				console.log(error);
 				this.errorService.handleError(error.json())
 				return Observable.throw(error.json())
 			});
@@ -74,11 +69,7 @@ export class LeagueService {
 		const body = JSON.stringify(league);
 		const headers = new Headers({'Content-Type': 'application/json'});
 
-		const token = localStorage.getItem('token')
-			? '?token=' + localStorage.getItem('token')
-			: '';
-
-		return this.http.patch('/league/' + league.leagueId + token, body, {headers: headers})
+		return this.http.patch('/league/' + league.leagueId + this.tokenParam(), body, {headers: headers})
 			.map((response: Response) => response.json())
 			.catch((error: Response) => {
 				this.errorService.handleError(error.json())
@@ -89,11 +80,7 @@ export class LeagueService {
 	deleteLeague(league: League) {
 		this.leagues.splice(this.leagues.indexOf(league), 1);
 
-		const token = localStorage.getItem('token')
-			? '?token=' + localStorage.getItem('token')
-			: '';
-
-		return this.http.delete('/league/' + league.leagueId + token)
+		return this.http.delete('/league/' + league.leagueId + this.tokenParam())
 			.map((response: Response) => response.json())
 			.catch((error: Response) => {
 				this.errorService.handleError(error.json())
@@ -101,8 +88,30 @@ export class LeagueService {
 			});
 	}
 
-	getLeague(id: String) {
+	getLeagueByDomain(domain: String) {
+		return this.http.get('/league/' + domain + this.tokenParam())
+			.map((response: Response) => {
+				const result = response.json();
+				const league = new League(
+					result.obj.name,
+					result.obj.domain,
+					result.obj.url,
+					result.obj.status,
+					result.obj._id
+					);
+				return league;
+			})
+			.catch((error: Response) => {
+				this.errorService.handleError(error.json())
+				return Observable.throw(error.json())
+			});
+	}
 
+	tokenParam() {
+		const token = localStorage.getItem('token')
+			? '?token=' + localStorage.getItem('token')
+			: '';
+		return token;
 	}
 }
 

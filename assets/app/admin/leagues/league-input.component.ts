@@ -17,6 +17,7 @@ export class LeagueInputComponent implements OnInit {
 		if (this.league) {
 			// Edit
 			this.league.name = form.value.name;
+			this.league.domain = form.value.domain;
 			this.league.status = form.value.status;
 			this.league.url = form.value.url;
 			this.leagueService.updateLeague(this.league)
@@ -26,7 +27,7 @@ export class LeagueInputComponent implements OnInit {
 			this.league = null;
 		} else {
 			// Create
-			const league = new League(form.value.name, form.value.url, form.value.status);
+			const league = new League(form.value.name, form.value.domain, form.value.url, form.value.status);
 			this.leagueService.addLeague(league)
 				.subscribe(
 					data => console.log(data),

@@ -6,9 +6,16 @@ import { AuthService } from "./auth/auth.service"
 import { Season } from "./admin/seasons/season.model";
 import { SeasonService } from "./admin/seasons/season.service";
 
+import { League } from "./admin/leagues/league.model";
+import { LeagueService } from "./admin/leagues/league.service";
+
 @Component({
 	selector: 'app-header',
 	template: `
+	        <div class="header row" *ngIf="currentLeague">
+	        	<img class="logo" src="/images/{{ currentLeague.domain }}_logo.png" />
+	            <h1 class="hide">{{ currentLeague.name }}</h1>
+	        </div>
 			<div class="header row">
 				<nav class="col-md-10 col-md-offset-1">
 					<ul class="nav nav-pills">
@@ -54,31 +61,40 @@ export class HeaderComponent implements OnInit {
 	constructor(
 		private authService: AuthService,
 		private route: ActivatedRoute,
-		private seasonService: SeasonService
+		private seasonService: SeasonService,
+		private leagueService: LeagueService
 	) {}
 
-	season: String;
+	currentLeague: League;
 	currentSeason: Season;
 
 	ngOnInit() {
-      console.log('url=',this.route.url);
-      console.log('params=',this.route.params)
-
-      alert(':::' + this.route.snapshot.params['season']);
-
-      this.route.params.subscribe( params =>
-      		{
-      			console.log("PARAMS", params);
-      			this.season = params['season'];
-      			alert("season = " + this.season);
-      			return [];
-      		}
-      	)
+	  this.initPath(document.location.href.toString());
     }
 
-    initSeason(s: String) {
-    	alert('init')
-    	console.log(s)
+
+    initPath(path: String) {
+    	console.log('init : ' + path)
+    	let leagueDomain: String = '';
+    	let season: String = '';
+    	let pathArr = path.split('/')
+    	if (pathArr[2].indexOf('localhost')!=-1) {
+    		leagueDomain = pathArr[2].split('.')[0]
+		}
+		else {
+			leagueDomain = pathArr[2].split('.')[1]  //check this
+		}
+		season = pathArr[3]
+
+		this.leagueService.getLeagueByDomain(leagueDomain)
+			.subscribe(
+    			(league: League) => {
+    				console.log(league)
+    				this.currentLeague = league;
+    				console.log('currentLeague=', this.currentLeague)
+    			}
+    		);
+    	return ''
     }
 
 	isLoggedIn() {

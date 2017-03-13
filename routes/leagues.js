@@ -45,6 +45,7 @@ router.post('/', function (req, res, next) {
 
     	var league = new League({
 	    	name: req.body.name,
+	    	domain: req.body.domain,
 	    	url: req.body.url,
 	    	status: req.body.status
 	    });
@@ -65,6 +66,31 @@ router.post('/', function (req, res, next) {
 
 });
 
+
+router.get('/:domain', function (req, res, next) {
+	League.findOne({domain: req.params.domain.toLowerCase()}, function(err, league) {
+		if (err) {
+			return res.status(500).json({
+    			title: 'An error occurred',
+    			error: err
+    		});
+		}
+		if (!league) {
+			return res.status(500).json({
+    			title: 'No league found!',
+    			error: {message: 'League not found'}
+    		});
+		}
+		else {
+			return res.status(200).json({
+    			message: 'League found',
+    			obj: league
+    		});
+		}
+	})
+})
+
+
 router.patch('/:id', function (req, res, next) {
 
 	var decoded = jwt.decode(req.query.token);
@@ -83,6 +109,7 @@ router.patch('/:id', function (req, res, next) {
     		});
 		}
 		league.name = req.body.name;
+		league.domain = req.body.domain;
 		league.url = req.body.url;
 		league.status = req.body.status;
 		league.save(function(err, result) {

@@ -3,6 +3,13 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+.hide { text-indent:-10000px; }
+.header .logo {
+  width:272px;
+  height:104px;
+  margin-left:54px;
+}
+
 .top {
 	background-color:#f8f7f6;
 	color:#333;

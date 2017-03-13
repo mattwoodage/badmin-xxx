@@ -13,9 +13,7 @@ import { Router } from "@angular/router";
 				<li class="nav-item" routerLinkActive="active" *ngIf="isLoggedIn()"><a class="nav-link" (click)="onLogout()">Logout</a></li>
 			</ul>
 		</div>
-		<div class="row spacing">AUTH ROUTER.why doesnt the auth stuff appear here?....[[[
-			<router-outlet></router-outlet>]]]
-		</div>
+		<router-outlet></router-outlet>
 	`
 })
 
