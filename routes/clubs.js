@@ -3,7 +3,7 @@ var router = express.Router();
 var jwt = require('jsonwebtoken');
 var Club = require('../models/club');   //backend mongoose model
 
-//routes here appended to /seanso  from top level app.js
+//routes here appended to /clubs  from top level app.js
 
 // these are processed in order
 

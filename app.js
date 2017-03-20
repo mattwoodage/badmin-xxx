@@ -1,5 +1,6 @@
 
 var express = require('express');
+var session = require('express-session');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -19,6 +20,8 @@ var teamRoutes = require('./routes/teams');
 var matchRoutes = require('./routes/matches');
 var playerRoutes = require('./routes/players');
 var userRoutes = require('./routes/user');
+
+var League = require('./models/league');
 
 var app = express();
 mongoose.connect('localhost:27017/badmin');
@@ -58,13 +61,14 @@ app.use('/match', matchRoutes);
 app.use('/player', playerRoutes);
 
 app.use('/user', userRoutes);
-app.use('/', appRoutes);
+app.use('/2016-17/home', appRoutes);
+app.use('/2015-16/home', appRoutes);
+app.use('/2014-15/home', appRoutes);
 
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-    return res.render('index');
+    return res.redirect('/2016-17/home');
 });
-
 
 module.exports = app;

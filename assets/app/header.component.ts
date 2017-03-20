@@ -3,11 +3,14 @@ import { ActivatedRoute, Params, Routes, RouterModule } from "@angular/router";
 import { AuthenticationComponent } from "./auth/authentication.component";
 import { AuthService } from "./auth/auth.service"
 
-import { Season } from "./admin/seasons/season.model";
-import { SeasonService } from "./admin/seasons/season.service";
+import { NgForm } from "@angular/forms";
 
+import { AppComponent } from "./app.component";
+
+import { GlobalService } from "./global.service"
+
+import { Season } from "./admin/seasons/season.model";
 import { League } from "./admin/leagues/league.model";
-import { LeagueService } from "./admin/leagues/league.service";
 
 @Component({
 	selector: 'app-header',
@@ -15,6 +18,11 @@ import { LeagueService } from "./admin/leagues/league.service";
 	        <div class="header row" *ngIf="currentLeague">
 	        	<img class="logo" src="/images/{{ currentLeague.domain }}_logo.png" />
 	            <h1 class="hide">{{ currentLeague.name }}</h1>
+	            <p>{{ currentSeason.name }}</p>
+	            	<select>
+						<option *ngFor="let season of seasons" >{{season.name}}</option>
+					</select>
+
 	        </div>
 			<div class="header row">
 				<nav class="col-md-10 col-md-offset-1">
@@ -34,7 +42,7 @@ import { LeagueService } from "./admin/leagues/league.service";
 					</ul>
 				</nav>
 			</div>
-			<div class="header row">
+			<div class="header row" *ngIf="isLoggedIn()">
 				<nav class="col-md-10 col-md-offset-1">
 					<ul class="nav nav-pills">
 						<li routerLinkActive="active"><a [routerLink]="['/messages']">Messenger</a></li>
@@ -60,48 +68,54 @@ import { LeagueService } from "./admin/leagues/league.service";
 export class HeaderComponent implements OnInit {
 	constructor(
 		private authService: AuthService,
-		private route: ActivatedRoute,
-		private seasonService: SeasonService,
-		private leagueService: LeagueService
+		private appComponent: AppComponent,
+		private globalService: GlobalService,
+		private route: ActivatedRoute
 	) {}
 
 	currentLeague: League;
 	currentSeason: Season;
+	seasons: Season[];
+	vvv: Season;
 
 	ngOnInit() {
-	  this.initPath(document.location.href.toString());
+		this.currentLeague = this.globalService.currentLeague;
+		this.currentSeason = this.globalService.currentSeason;
+		this.seasons = this.globalService.seasons;
     }
 
-
-    initPath(path: String) {
-    	console.log('init : ' + path)
-    	let leagueDomain: String = '';
-    	let season: String = '';
-    	let pathArr = path.split('/')
-    	if (pathArr[2].indexOf('localhost')!=-1) {
-    		leagueDomain = pathArr[2].split('.')[0]
-		}
-		else {
-			leagueDomain = pathArr[2].split('.')[1]  //check this
-		}
-		season = pathArr[3]
-
-		this.leagueService.getLeagueByDomain(leagueDomain)
-			.subscribe(
-    			(league: League) => {
-    				console.log(league)
-    				this.currentLeague = league;
-    				console.log('currentLeague=', this.currentLeague)
-    			}
-    		);
-    	return ''
-    }
-
-	isLoggedIn() {
+    isLoggedIn() {
 		return this.authService.isLoggedIn()
 	}
 
-	getUserName() {
-		return this.authService.getUserName()
+    onSubmit(form: NgForm) {
+		// if (this.team) {
+		// 	// Edit
+		// 	this.team.suffix = form.value.suffix;
+		// 	this.team.club = form.value.club;
+		// 	this.team.division = form.value.division;
+
+		// 	this.teamService.updateTeam(this.team)
+		// 		.subscribe(
+		// 			result => console.log(result)
+		// 		)
+		// 	this.team = null;
+		// } else {
+		// 	// Create
+		// 	const team = new Team(form.value.suffix, form.value.division, form.value.club);
+		// 	this.teamService.addTeam(team)
+		// 		.subscribe(
+		// 			data => console.log(data),
+		// 			error => console.error(error)
+		// 		);
+		// }
+		form.resetForm();
 	}
+
+	onClear(form: NgForm) {
+		//this.team = null;
+		form.resetForm();
+	}
+
+
 }

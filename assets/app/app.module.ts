@@ -13,6 +13,8 @@ import { ErrorComponent } from "./errors/error.component";
 import { ErrorService } from "./errors/error.service";
 import { MessageModule } from "./messages/message.module";
 
+import { GlobalService } from "./global.service"
+
 import { LeagueModule } from "./admin/leagues/league.module";
 import { SeasonModule } from "./admin/seasons/season.module";
 import { DivisionModule } from "./admin/divisions/division.module";
@@ -70,7 +72,8 @@ import { AuthModule } from "./auth/auth.module";
     ],
     providers: [		// anything here will be available throughout the whole app
     	AuthService,
-    	ErrorService
+    	ErrorService,
+        GlobalService
     ],
     bootstrap: [AppComponent]
 })

@@ -1,4 +1,5 @@
 var express = require('express');
+var session = require('express-session');
 var router = express.Router();
 var jwt = require('jsonwebtoken');
 var League = require('../models/league');   //backend mongoose model
@@ -8,6 +9,10 @@ var League = require('../models/league');   //backend mongoose model
 // these are processed in order
 
 router.get('/', function (req, res, next) {
+
+	console.log("getting leagues....")
+	console.log("session = ", session.league)
+
 	League.find()
 		.exec(function(err, leagues) {
 			if (err) {
@@ -22,6 +27,32 @@ router.get('/', function (req, res, next) {
 	    	});
 		});;
 })
+
+
+
+router.get('/:domain', function (req, res, next) {
+	League.findOne({domain: req.params.domain.toLowerCase()}, function(err, league) {
+		if (err) {
+			return res.status(500).json({
+    			title: 'An error occurred',
+    			error: err
+    		});
+		}
+		if (!league) {
+			return res.status(500).json({
+    			title: 'No league found!',
+    			error: {message: 'League not found'}
+    		});
+		}
+		else {
+			return res.status(200).json({
+    			message: 'League found',
+    			obj: league
+    		});
+		}
+	})
+})
+
 
 // this route will check if the user is authenticated.
 // if they are not - it will give 401.
@@ -67,28 +98,6 @@ router.post('/', function (req, res, next) {
 });
 
 
-router.get('/:domain', function (req, res, next) {
-	League.findOne({domain: req.params.domain.toLowerCase()}, function(err, league) {
-		if (err) {
-			return res.status(500).json({
-    			title: 'An error occurred',
-    			error: err
-    		});
-		}
-		if (!league) {
-			return res.status(500).json({
-    			title: 'No league found!',
-    			error: {message: 'League not found'}
-    		});
-		}
-		else {
-			return res.status(200).json({
-    			message: 'League found',
-    			obj: league
-    		});
-		}
-	})
-})
 
 
 router.patch('/:id', function (req, res, next) {

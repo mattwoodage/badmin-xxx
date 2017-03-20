@@ -89,7 +89,7 @@ export class LeagueService {
 	}
 
 	getLeagueByDomain(domain: String) {
-		return this.http.get('/league/' + domain + this.tokenParam())
+		return this.http.get('/league/' + domain)
 			.map((response: Response) => {
 				const result = response.json();
 				const league = new League(
@@ -101,10 +101,10 @@ export class LeagueService {
 					);
 				return league;
 			})
-			.catch((error: Response) => {
-				this.errorService.handleError(error.json())
-				return Observable.throw(error.json())
-			});
+			// .catch((error: Response) => {
+			// 	this.errorService.handleError(error.json())
+			// 	return Observable.throw(error.json())
+			// });
 	}
 
 	tokenParam() {
