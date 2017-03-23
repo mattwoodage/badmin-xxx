@@ -1,3 +1,5 @@
+import { ClubService } from "../clubs/club.service";
+
 export class Team {
 	suffix: string;
 	division: string;
@@ -9,6 +11,10 @@ export class Team {
 		this.division = division;
 		this.club = club;
 		this.teamId = teamId;
+	}
+
+	name() {
+		return '[CLUB NAME] ' + this.suffix;
 	}
 
 }

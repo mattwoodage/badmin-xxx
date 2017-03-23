@@ -20,48 +20,33 @@ import { League } from "./admin/leagues/league.model";
 	            <h1 class="hide">{{ currentLeague.name }}</h1>
 	            <p>{{ currentSeason.name }}</p>
 	            	<select>
-						<option *ngFor="let season of seasons" >{{season.name}}</option>
+						<option *ngFor="let season of seasons" [attr.selected]="currentSeason._id == season._id ? true : null" >{{season.name}} season</option>
 					</select>
 
 	        </div>
+	        <div class="header row" *ngIf="!currentLeague">
+	        	<h1>Cannot recognise league or season</h1>
+	        </div>
 			<div class="header row">
 				<nav class="col-md-10 col-md-offset-1">
-					<ul class="nav nav-pills">
-						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="['2016-17','home']">Home</a></li>
-						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="['2016-17','calendar']">Calendar</a></li>
-						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="['2016-17','fixtures']">Fixtures</a></li>
-						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="['2016-17','results']">Results</a></li>
-						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="['2016-17','tables']">Tables</a></li>
-						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="['2016-17','players']">Players</a></li>
-						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="['2016-17','clubs']">Clubs</a></li>
-						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="['2016-17','venues']">Venues</a></li>
-						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="['2016-17','cup']">Cup</a></li>
-						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="['2016-17','juniors']">Juniors</a></li>
-						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="['2016-17','history']">History</a></li>
-						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="['2016-17','rules']">Rules</a></li>
-					</ul>
-				</nav>
-			</div>
-			<div class="header row" *ngIf="isLoggedIn()">
-				<nav class="col-md-10 col-md-offset-1">
-					<ul class="nav nav-pills">
-						<li routerLinkActive="active"><a [routerLink]="['/messages']">Messenger</a></li>
-						<li routerLinkActive="active"><a [routerLink]="['/admin/leagues']">Leagues</a></li>
-						<li routerLinkActive="active"><a [routerLink]="['/admin/seasons']">Seasons</a></li>
-						<li routerLinkActive="active"><a [routerLink]="['/admin/divisions']">Divisions</a></li>
-						<li routerLinkActive="active"><a [routerLink]="['/admin/formats']">Formats</a></li>
-
-						<li routerLinkActive="active"><a [routerLink]="['/admin/matches']">Matches</a></li>
-
-						<li routerLinkActive="active"><a [routerLink]="['/admin/venues']">Venues</a></li>
-						<li routerLinkActive="active"><a [routerLink]="['/admin/clubs']">Clubs</a></li>
-						<li routerLinkActive="active"><a [routerLink]="['/admin/teams']">Teams</a></li>
-						<li routerLinkActive="active"><a [routerLink]="['/admin/players']">Players</a></li>
+					<ul id="topnav" class="nav">
+						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="[currentSeason.name,'home']">Home</a></li>
+						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="[currentSeason.name,'calendar']">Calendar</a></li>
+						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="[currentSeason.name,'fixtures']">Fixtures</a></li>
+						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="[currentSeason.name,'results']">Results</a></li>
+						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="[currentSeason.name,'tables']">Tables</a></li>
+						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="[currentSeason.name,'players']">Players</a></li>
+						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="[currentSeason.name,'clubs']">Clubs</a></li>
+						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="[currentSeason.name,'venues']">Venues</a></li>
+						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="[currentSeason.name,'cup']">Cup</a></li>
+						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="[currentSeason.name,'juniors']">Juniors</a></li>
+						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="[currentSeason.name,'history']">History</a></li>
+						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="[currentSeason.name,'rules']">Rules</a></li>
+						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="[currentSeason.name,'admin']">Admin</a></li>
 
 					</ul>
 				</nav>
 			</div>
-
 	`
 })
 
@@ -82,6 +67,10 @@ export class HeaderComponent implements OnInit {
 		this.currentLeague = this.globalService.currentLeague;
 		this.currentSeason = this.globalService.currentSeason;
 		this.seasons = this.globalService.seasons;
+
+		console.log(this.currentLeague)
+		console.log(this.currentSeason)
+
     }
 
     isLoggedIn() {

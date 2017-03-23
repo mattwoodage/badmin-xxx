@@ -21,8 +21,6 @@ var matchRoutes = require('./routes/matches');
 var playerRoutes = require('./routes/players');
 var userRoutes = require('./routes/user');
 
-var League = require('./models/league');
-
 var app = express();
 mongoose.connect('localhost:27017/badmin');
 //mongoose.connect('test-user:test-pw@ds145009.mlab.com:45009/badmin')

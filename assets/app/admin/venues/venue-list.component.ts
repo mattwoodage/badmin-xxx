@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { Venue } from "./venue.model";
 import { VenueService } from "./venue.service";
 
+import { GlobalService } from "../../global.service"
+
 @Component({
 	selector: 'app-venue-list',
 	template: `
@@ -18,7 +20,7 @@ export class VenueListComponent implements OnInit {
 
 	venues: Venue[];
 
-    constructor(private venueService: VenueService) {};
+    constructor(private venueService: VenueService, private globalService: GlobalService) {};
 
     ngOnInit() {
     	this.venueService.getVenues()
@@ -27,5 +29,8 @@ export class VenueListComponent implements OnInit {
     				this.venues = venues;
     			}
     		);
+
+    	console.log("VENUES")
+    	console.log(this.globalService.matt);
     }
 }

@@ -9,6 +9,7 @@ var Team = require('../models/team');   //backend mongoose model
 
 router.get('/', function (req, res, next) {
 	Team.find()
+		.populate('club')
 		.exec(function(err, teams) {
 			if (err) {
 	    		return res.status(500).json({
@@ -20,7 +21,7 @@ router.get('/', function (req, res, next) {
 	    		message: 'Success',
 	    		obj: teams
 	    	});
-		});;
+		});
 })
 
 // this route will check if the user is authenticated.

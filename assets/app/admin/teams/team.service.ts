@@ -44,6 +44,8 @@ export class TeamService {
 		return this.http.get('/team')
 			.map((response: Response) => {
 				const teams = response.json().obj;
+				console.log('---------TEAMS--------')
+				console.log(teams)
 				let transformedTeams: Team[] = [];
 				for (let team of teams) {
 					transformedTeams.push(new Team(

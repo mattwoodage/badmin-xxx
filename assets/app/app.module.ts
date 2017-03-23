@@ -34,6 +34,7 @@ import { ClubsPageModule } from "./clubs/clubs-page.module";
 import { VenuesPageModule } from "./venues/venues-page.module";
 import { PlayersPageModule } from "./players/players-page.module";
 import { CupPageModule } from "./cup/cup-page.module";
+import { AdminPageModule } from "./admin/admin-page.module";
 
 import { AuthModule } from "./auth/auth.module";
 
@@ -68,6 +69,7 @@ import { AuthModule } from "./auth/auth.module";
         VenuesPageModule,
         PlayersPageModule,
         CupPageModule,
+        AdminPageModule,
     	routing
     ],
     providers: [		// anything here will be available throughout the whole app

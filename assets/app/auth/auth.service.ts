@@ -6,6 +6,8 @@ import { Observable } from "rxjs";
 import { User } from "./user.model";
 import { ErrorService } from "../errors/error.service";
 
+// import { tokenNotExpired } from 'angular2-jwt';
+
 @Injectable()
 export class AuthService {
 
@@ -71,6 +73,7 @@ export class AuthService {
 
 	isLoggedIn() {
 		return localStorage.getItem('token') !== null;
+		//return tokenNotExpired();
 	}
 
 	getUserName() {

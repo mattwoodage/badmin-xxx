@@ -1,0 +1,71 @@
+<div class="">
+	<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+
+		<div class="form-group">
+			<label for="division">Division</label>
+			<select [ngModel]="match?.division" name="division" >
+			   	<option *ngFor="let division of divisions" [ngValue]="division.divisionId">{{division.name}}</option>
+			</select>
+		</div>
+
+		<div class="form-group">
+			<label for="venue">Venue</label>
+			<select [ngModel]="match?.venue" name="venue" >
+			   	<option *ngFor="let venue of venues" [ngValue]="venue.venueId">{{venue.name}}</option>
+			</select>
+		</div>
+
+		<div class="form-group">
+			<label for="homeTeam">Home Team</label>
+			<select [ngModel]="match?.homeTeam" name="homeTeam" >
+			   	<option *ngFor="let team of teams" [ngValue]="team.teamId">{{team.name()}}</option>
+			</select>
+		</div>
+
+		<div class="form-group">
+			<label for="homeTeam">Away Team</label>
+			<select [ngModel]="match?.awayTeam" name="awayTeam" >
+			   	<option *ngFor="let team of teams" [ngValue]="team.teamId">{{team.name()}}</option>
+			</select>
+		</div>
+
+
+		<div class="form-group">
+			<label for="content">Num Courts</label>
+			<input
+				type="text"
+				id="numCourts"
+				class="form-control"
+				[ngModel]="match?.numCourts"
+				name="numCourts"
+				required
+				>
+		</div>
+		<div class="form-group">
+			<label for="url">Starts at</label>
+			<input
+				type="text"
+				id="dateTime"
+				class="form-control"
+				[ngModel]="match?.dateTime"
+				name="dateTime"
+				>
+		</div>
+		<div class="form-group">
+			<label for="status">Status</label>
+			<input
+				type="text"
+				id="status"
+				class="form-control"
+				[ngModel]="match?.status"
+				name="status"
+				required
+				>
+		</div>
+		<button class="btn btn-danger" type="button" (click)="onClear(f)">Clear</button>
+		<button class="btn btn-primary" type="submit">Save</button>
+
+		<div class="row">
+		</div>
+	</form>
+</div>

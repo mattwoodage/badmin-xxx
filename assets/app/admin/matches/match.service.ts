@@ -30,6 +30,9 @@ export class MatchService {
 					result.obj.venue,
 					result.obj.homeTeam,
 					result.obj.awayTeam,
+					result.obj.numCourts,
+					result.obj.dateTime,
+					result.obj.status,
 					result.obj._id
 					);
 				this.matches.push(match);
@@ -52,6 +55,9 @@ export class MatchService {
 						match.venue,
 						match.homeTeam,
 						match.awayTeam,
+						match.numCourts,
+						match.dateTime,
+						match.status,
 						match._id)
 					);
 				}

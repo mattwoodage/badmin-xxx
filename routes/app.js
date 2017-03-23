@@ -28,7 +28,10 @@ router.get('/', function (req, res, next) {
 
 	League.findOne({domain: leagueDomain.toLowerCase()}, function(err, _league) {
 		if (err) console.log("error matching league")
-		if (!_league) console.log("league not found: ", leagueDomain)
+		if (!_league) {
+			console.log("league not found: ", leagueDomain)
+			render();
+		}
 		else {
 			league = _league;
 			season = Season.findOne({league: league.id, name: seasonYear}, function(err, _season) {

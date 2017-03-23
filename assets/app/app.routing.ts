@@ -12,6 +12,7 @@ import { PlayersPageComponent } from "./players/players-page.component";
 import { ClubsPageComponent } from "./clubs/clubs-page.component";
 import { VenuesPageComponent } from "./venues/venues-page.component";
 import { CupPageComponent } from "./cup/cup-page.component";
+import { AdminPageComponent } from "./admin/admin-page.component";
 
 import { DivisionsComponent } from "./admin/divisions/divisions.component";
 import { FormatsComponent } from "./admin/formats/formats.component";
@@ -26,17 +27,8 @@ import { SeasonsComponent } from "./admin/seasons/seasons.component";
 import { AuthenticationComponent } from "./auth/authentication.component";
 
 const APP_ROUTES: Routes = [
+	// MOST SPECIFIC FIRST!
 	{ path: 'messages', component: MessagesComponent },
-
-	{ path: ':season/home', component: HomePageComponent },
-	{ path: ':season/calendar', component: CalendarPageComponent },
-	{ path: ':season/fixtures', component: FixturesPageComponent },
-	{ path: ':season/results', component: ResultsPageComponent },
-	{ path: ':season/tables', component: TablesPageComponent },
-	{ path: ':season/players', component: PlayersPageComponent },
-	{ path: ':season/clubs', component: ClubsPageComponent },
-	{ path: ':season/venues', component: VenuesPageComponent },
-	{ path: ':season/cup', component: CupPageComponent },
 
 	{ path: 'admin/divisions', component: DivisionsComponent },
 	{ path: 'admin/formats', component: FormatsComponent },
@@ -47,6 +39,18 @@ const APP_ROUTES: Routes = [
 	{ path: 'admin/players', component: PlayersComponent },
 	{ path: 'admin/leagues', component: LeaguesComponent },
 	{ path: 'admin/seasons', component: SeasonsComponent },
+
+	{ path: ':season/home', component: HomePageComponent },
+	{ path: ':season/calendar', component: CalendarPageComponent },
+	{ path: ':season/fixtures', component: FixturesPageComponent },
+	{ path: ':season/results', component: ResultsPageComponent },
+	{ path: ':season/tables', component: TablesPageComponent },
+	{ path: ':season/players', component: PlayersPageComponent },
+	{ path: ':season/clubs', component: ClubsPageComponent },
+	{ path: ':season/venues', component: VenuesPageComponent },
+	{ path: ':season/cup', component: CupPageComponent },
+	{ path: ':season/admin', component: AdminPageComponent },
+
 
 
 	{ path: 'auth', component: AuthenticationComponent, loadChildren: './auth/auth.module#AuthModule' },

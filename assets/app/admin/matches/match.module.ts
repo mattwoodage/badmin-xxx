@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { MatchesComponent } from "./matches.component";
 import { MatchComponent } from "./match.component";
 import { MatchListComponent } from "./match-list.component";
+import { MatchInputComponent } from "./match-input.component";
 
 import { MatchService } from "./match.service";
 
@@ -12,7 +13,8 @@ import { MatchService } from "./match.service";
 	declarations: [
 		MatchComponent,
         MatchListComponent,
-        MatchesComponent
+        MatchesComponent,
+        MatchInputComponent
     ],
     imports: [
     	CommonModule,

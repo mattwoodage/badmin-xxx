@@ -50,3 +50,16 @@ a.danger {
 input.ng-invalid.ng-touched {
   border: 1px solid red;
 }
+
+#topnav li.nav-item { margin-right:1px; }
+#topnav li.nav-item a.nav-link { background-color:#333; }
+#topnav li.nav-item.active a.nav-link { background-color:#f8f7f6; }
+
+
+.date {
+  width:14.28%;
+  float:left;
+  height:100px;
+  border:1px solid #ccc;
+}
+
