@@ -25,16 +25,7 @@ export class MatchService {
 		return this.http.post('/match' + token, body, {headers: headers})
 			.map((response: Response) => {
 				const result = response.json();
-				const match = new Match(
-					result.obj.division,
-					result.obj.venue,
-					result.obj.homeTeam,
-					result.obj.awayTeam,
-					result.obj.numCourts,
-					result.obj.dateTime,
-					result.obj.status,
-					result.obj._id
-					);
+				const match = new Match(result.obj);
 				this.matches.push(match);
 				return match;
 			})
@@ -50,16 +41,7 @@ export class MatchService {
 				const matches = response.json().obj;
 				let transformedMatches: Match[] = [];
 				for (let match of matches) {
-					transformedMatches.push(new Match(
-						match.division,
-						match.venue,
-						match.homeTeam,
-						match.awayTeam,
-						match.numCourts,
-						match.dateTime,
-						match.status,
-						match._id)
-					);
+					transformedMatches.push(new Match(match));
 				}
 				this.matches = transformedMatches;
 				return transformedMatches;

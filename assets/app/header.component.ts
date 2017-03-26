@@ -61,7 +61,6 @@ export class HeaderComponent implements OnInit {
 	currentLeague: League;
 	currentSeason: Season;
 	seasons: Season[];
-	vvv: Season;
 
 	ngOnInit() {
 		this.currentLeague = this.globalService.currentLeague;

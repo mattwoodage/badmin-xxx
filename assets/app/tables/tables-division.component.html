@@ -1,10 +1,45 @@
 <div class='division'>
 	<h1>{{ division.name }}</h1>
-	<div class=''>
-		header header header header header header header header header
-	</div>
-	<app-tables-team
-		[team]="team"
-	   	*ngFor="let team of teams">
-	</app-tables-team>
+	<table class='table table-bordered'>
+		<thead>
+			<tr>
+				<th></th>
+				<th colspan='4'>Matches</th>
+				<th colspan='2'>Rubbers</th>
+				<th colspan='2'>Games</th>
+				<th colspan='2'>Points</th>
+				<th></th>
+			</tr>
+			<tr>
+				<th></th>
+				<th>Total</th>
+				<th>Full</th>
+				<th>Won</th>
+				<th>Lost</th>
+				<th>Won</th>
+				<th>Lost</th>
+				<th>Won</th>
+				<th>Lost</th>
+				<th>Won</th>
+				<th>Lost</th>
+				<th>PTS</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let team of teams">
+		   		<td>{{team.name()}}</td>
+				<td>{{team.matchesPlayed()}}</td>
+				<td>0</td>
+				<td>0</td>
+				<td>0</td>
+				<td>{{team.rubbersPlayed()}}</td>
+				<td>0</td>
+				<td>0</td>
+				<td>0</td>
+				<td>0</td>
+				<td>0</td>
+				<td>{{team.leaguePoints()}}</td>
+			</tr>
+		</tbody>
+	</table>
 </div>

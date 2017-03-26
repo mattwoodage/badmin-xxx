@@ -10,15 +10,21 @@ export class Match {
 	status: number;
 	matchId?: string;
 
-	constructor(division: any, venue: any, homeTeam: any, awayTeam: any, numCourts: number, dateTime: Date, status: number, matchId?: string) {
-		this.division = division;
-		this.venue = venue;
-		this.homeTeam = homeTeam;
-		this.awayTeam = awayTeam;
-		this.numCourts = numCourts;
-		this.dateTime = dateTime;
-		this.status = status;
-		this.matchId = matchId;
+	// constructor(division: any, venue: any, homeTeam: any, awayTeam: any, numCourts: number, dateTime: Date, status: number, matchId?: string) {
+	// 	this.division = division;
+	// 	this.venue = venue;
+	// 	this.homeTeam = homeTeam;
+	// 	this.awayTeam = awayTeam;
+	// 	this.numCourts = numCourts;
+	// 	this.dateTime = dateTime;
+	// 	this.status = status;
+	// 	this.matchId = matchId;
+	// }
+
+	constructor(obj: any) {
+		for (let prop in obj) {
+            this[prop] = obj[prop];
+        }
 	}
 
 	desc() {
@@ -30,4 +36,5 @@ export class Match {
 	date() {
 		return moment(new Date(this.dateTime)).format("dd Do MMM HH:mm")
 	}
+
 }

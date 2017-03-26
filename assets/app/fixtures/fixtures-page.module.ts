@@ -3,10 +3,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { FixturesPageComponent } from "./fixtures-page.component";
+import { FixturesMatchComponent } from "./fixtures-match.component";
+
 
 @NgModule({
 	declarations: [
-		FixturesPageComponent
+		FixturesPageComponent,
+		FixturesMatchComponent
     ],
     imports: [
     	CommonModule,

@@ -27,7 +27,6 @@ export class TablesDivisionComponent implements OnInit {
             .subscribe(
                 (teams: Team[]) => {
                     this.teams = teams;
-                    console.log(this.teams)
                 }
             );
     }

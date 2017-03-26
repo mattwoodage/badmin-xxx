@@ -15,4 +15,16 @@ export class Team {
 		return this.club.name + ' ' + this.suffix;
 	}
 
+	matchesPlayed() {
+		return this.club.name.length+5
+	}
+
+	rubbersPlayed() {
+		return this.club.name.length+20
+	}
+
+	leaguePoints() {
+		return this.club.name.length+13
+	}
+
 }

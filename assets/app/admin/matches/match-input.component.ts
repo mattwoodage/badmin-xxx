@@ -46,7 +46,15 @@ export class MatchInputComponent implements OnInit {
 			this.match = null;
 		} else {
 			// Create
-			const match = new Match(form.value.division, form.value.venue, form.value.homeTeam, form.value.awayTeam, form.value.numCourts, form.value.dateTime, form.value.status);
+			const match = new Match({
+				division: form.value.division,
+				venue:    form.value.venue,
+				homeTeam: form.value.homeTeam,
+				awayTeam: form.value.awayTeam,
+				numCourts: form.value.numCourts,
+				dateTime: form.value.dateTime,
+				status: form.value.status
+			});
 			this.matchService.addMatch(match)
 				.subscribe(
 					data => console.log(data),
