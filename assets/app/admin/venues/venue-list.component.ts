@@ -30,7 +30,5 @@ export class VenueListComponent implements OnInit {
     			}
     		);
 
-    	console.log("VENUES")
-    	console.log(this.globalService.matt);
     }
 }

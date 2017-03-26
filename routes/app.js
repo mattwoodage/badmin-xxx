@@ -1,6 +1,7 @@
 var express = require('express');
 var session = require('express-session');
 var router = express.Router();
+var jwt = require('jsonwebtoken');
 
 var app = express();
 var League = require('../models/league');
@@ -25,6 +26,16 @@ router.get('/', function (req, res, next) {
 	var season;
 	var league;
 	var seasons;
+
+	app.set('matt', 'MATTHEW WOODAGE')
+
+	console.log('[[['+app.get('matt')+']]]')
+
+	jwt.verify('token', 'secret', function(err, decoded) {
+		if (err) {
+    		console.log('***** NOT AUTHENTICATED ******')
+    	}
+    })
 
 	League.findOne({domain: leagueDomain.toLowerCase()}, function(err, _league) {
 		if (err) console.log("error matching league")

@@ -1,14 +1,14 @@
 <article class="panel panel-default">
 	<div class="panel-body">
-	{{ getClub()?.name }} {{ team.suffix }}
+	{{ team.name() }}
 	</div>
 	<footer class="panel-footer">
 		<div class="author">
-		{{ getDivision()?.name }}
+		{{ team.division.name }}
 		</div>
 		<div class="config">
 			<a (click)="onEdit()">Edit</a>
 			<a (click)="onDelete()">Delete</a>
 		</div>
-	</footer>
+	</footer>[{{ team.club }}]
 </article>

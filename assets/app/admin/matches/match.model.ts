@@ -1,14 +1,16 @@
+import * as moment from 'moment'
+
 export class Match {
-	division: string;
-	venue: string;
-	homeTeam: string;
-	awayTeam: string;
+	division: any;
+	venue: any;
+	homeTeam: any;
+	awayTeam: any;
 	numCourts: number;
 	dateTime: Date;
 	status: number;
 	matchId?: string;
 
-	constructor(division: string, venue: string, homeTeam: string, awayTeam: string, numCourts: number, dateTime: Date, status: number, matchId?: string) {
+	constructor(division: any, venue: any, homeTeam: any, awayTeam: any, numCourts: number, dateTime: Date, status: number, matchId?: string) {
 		this.division = division;
 		this.venue = venue;
 		this.homeTeam = homeTeam;
@@ -19,4 +21,13 @@ export class Match {
 		this.matchId = matchId;
 	}
 
+	desc() {
+		console.log(this.homeTeam)
+		console.log(typeof this.homeTeam)
+		return this.homeTeam + " v " + this.awayTeam
+	}
+
+	date() {
+		return moment(new Date(this.dateTime)).format("dd Do MMM HH:mm")
+	}
 }

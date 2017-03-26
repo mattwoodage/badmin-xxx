@@ -1,20 +1,18 @@
-import { ClubService } from "../clubs/club.service";
-
 export class Team {
 	suffix: string;
-	division: string;
-	club: string;
-	teamId?: string;
+	division: any;
+	club: any;
+	_id?: string;
 
-	constructor(suffix: string, division: string, club: string, teamId?: string) {
+	constructor(suffix: string, division: any, club: any, _id?: string) {
 		this.suffix = suffix;
 		this.division = division;
 		this.club = club;
-		this.teamId = teamId;
+		this._id = _id;
 	}
 
 	name() {
-		return '[CLUB NAME] ' + this.suffix;
+		return this.club.name + ' ' + this.suffix;
 	}
 
 }

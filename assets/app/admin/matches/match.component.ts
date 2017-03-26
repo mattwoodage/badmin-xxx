@@ -38,8 +38,5 @@ export class MatchComponent {
         	);
     }
 
-    matchDescription() {
-        return 'match description'
-    }
 
 }

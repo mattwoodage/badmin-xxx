@@ -62,7 +62,6 @@ export class AuthService {
 			catch (e) {
 
 			}
-
 		}
 	}
 

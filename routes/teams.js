@@ -10,6 +10,7 @@ var Team = require('../models/team');   //backend mongoose model
 router.get('/', function (req, res, next) {
 	Team.find()
 		.populate('club')
+		.populate('division')
 		.exec(function(err, teams) {
 			if (err) {
 	    		return res.status(500).json({
@@ -17,7 +18,24 @@ router.get('/', function (req, res, next) {
 	    			error: err
 	    		});
 	    	}
-	    	res.status(201).json({
+	    	res.status(200).json({
+	    		message: 'Success',
+	    		obj: teams
+	    	});
+		});
+})
+
+router.get('/:division', function (req, res, next) {
+	Team.find({division:req.params.division})
+		.populate('club')
+		.exec(function(err, teams) {
+			if (err) {
+	    		return res.status(500).json({
+	    			title: 'An error occurred',
+	    			error: err
+	    		});
+	    	}
+	    	res.status(200).json({
 	    		message: 'Success',
 	    		obj: teams
 	    	});
@@ -93,10 +111,23 @@ router.patch('/:id', function (req, res, next) {
 	    			error: err
 	    		});
 	    	}
-			res.status(200).json({
-    			title: 'Team updated',
-    			error: result
-    		});
+
+	    	Team.findById(req.params.id)
+	    		.populate('club')
+				.populate('division')
+				.exec(function(err, team) {
+					if (err) {
+			    		return res.status(500).json({
+			    			title: 'An error occurred',
+			    			error: err
+			    		});
+			    	}
+			    	res.status(200).json({
+			    		message: 'Team updated',
+			    		obj: team
+			    	});
+				});
+
 		})
 	})
 })

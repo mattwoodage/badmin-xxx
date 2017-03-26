@@ -4,6 +4,8 @@ import 'rxjs';
 import { Observable } from "rxjs";
 
 import { Division } from "./division.model";
+import { Season } from "../seasons/season.model";
+
 import { ErrorService } from "../../errors/error.service";
 
 @Injectable()  // this does nothing except adds metadata so the injector can work on this class
@@ -40,8 +42,12 @@ export class DivisionService {
 			});
 	}
 
-	getDivisions() {
-		return this.http.get('/division')
+	getDivisions(season?: Season) {
+		let path = '/division'
+		if (season) {
+			path += '/' + season.seasonId
+		}
+		return this.http.get(path)
 			.map((response: Response) => {
 				const divisions = response.json().obj;
 				let transformedDivisions: Division[] = [];

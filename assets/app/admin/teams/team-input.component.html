@@ -3,7 +3,7 @@
 
 		<div class="form-group">
 			<label for="club">Club</label>
-			<select [ngModel]="team?.club" name="club" >
+			<select [ngModel]="team?.club._id" name="club" >
 			   	<option *ngFor="let club of clubs" [ngValue]="club.clubId">{{club.name}}</option>
 			</select>
 		</div>
@@ -21,7 +21,7 @@
 
 		<div class="form-group">
 			<label for="division">Division</label>
-			<select [ngModel]="team?.division" name="division" >
+			<select [ngModel]="team?.division._id" name="division" >
 			   	<option *ngFor="let division of divisions" [ngValue]="division.divisionId">{{division.name}}</option>
 			</select>
 		</div>

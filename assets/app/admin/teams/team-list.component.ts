@@ -1,8 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Team } from "./team.model";
-import { Club } from "../clubs/club.model";
 import { TeamService } from "./team.service";
-import { ClubService } from "../clubs/club.service";
 
 @Component({
 	selector: 'app-team-list',
@@ -19,9 +17,8 @@ import { ClubService } from "../clubs/club.service";
 export class TeamListComponent implements OnInit {
 
 	teams: Team[];
-	clubs: Club[];
 
-    constructor(private teamService: TeamService, private clubService: ClubService) {};
+    constructor(private teamService: TeamService) {};
 
     ngOnInit() {
     	this.teamService.getTeams()
@@ -31,12 +28,7 @@ export class TeamListComponent implements OnInit {
     			}
     		);
 
-    	this.clubService.getClubs()
-    		.subscribe(
-    			(clubs: Club[]) => {
-    				this.clubs = clubs;
-    			}
-    		);
+
     }
 
 }

@@ -26,12 +26,17 @@ export class TeamInputComponent implements OnInit {
 			this.team.suffix = form.value.suffix;
 			this.team.club = form.value.club;
 			this.team.division = form.value.division;
-
+			alert("?1")
 			this.teamService.updateTeam(this.team)
 				.subscribe(
-					result => console.log(result)
-				)
-			this.team = null;
+					(team: Team) => {
+					alert('why will this new value not get replaced in the list view?!?!?')
+
+    				this.team = team;
+    				this.team.suffix = 'done'
+    			})
+			this.team.suffix = 'loading...';
+			alert("?2")
 		} else {
 			// Create
 			const team = new Team(form.value.suffix, form.value.division, form.value.club);
@@ -41,7 +46,9 @@ export class TeamInputComponent implements OnInit {
 					error => console.error(error)
 				);
 		}
+		alert("?3")
 		form.resetForm();
+		alert("?4")
 	}
 
 	onClear(form: NgForm) {
@@ -51,7 +58,10 @@ export class TeamInputComponent implements OnInit {
 
 	ngOnInit() {
 		this.teamService.teamIsEdit.subscribe(
-			(team: Team) => this.team = team
+			(team: Team) => {
+				console.log('tttttttt', team)
+				this.team = team
+			}
 		);
 
 		this.clubService.getClubs()

@@ -65,14 +65,6 @@ export class TeamComponent implements OnInit {
         	);
     }
 
-    getClub() {
-        if (this.clubs) return this.clubs.filter(club => club.clubId === this.team.club.valueOf())[0];
-        return null
-    }
 
-    getDivision() {
-        if (this.divisions) return this.divisions.filter(division => division.divisionId === this.team.division.valueOf())[0];
-        return null
-    }
 
 }

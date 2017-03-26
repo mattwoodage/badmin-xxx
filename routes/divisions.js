@@ -23,6 +23,22 @@ router.get('/', function (req, res, next) {
 		});;
 })
 
+router.get('/:season', function (req, res, next) {
+	Division.find({season:req.params.season})
+		.exec(function(err, divisions) {
+			if (err) {
+	    		return res.status(500).json({
+	    			title: 'An error occurred',
+	    			error: err
+	    		});
+	    	}
+	    	res.status(201).json({
+	    		message: 'Success',
+	    		obj: divisions
+	    	});
+		});;
+})
+
 // this route will check if the user is authenticated.
 // if they are not - it will give 401.
 // otherwise it will call NEXT anad go on to process the next route.

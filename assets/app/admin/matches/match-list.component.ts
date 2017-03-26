@@ -25,6 +25,7 @@ export class MatchListComponent implements OnInit {
     		.subscribe(
     			(matches: Match[]) => {
     				this.matches = matches;
+    				console.log(this.matches)
     			}
     		);
     }
