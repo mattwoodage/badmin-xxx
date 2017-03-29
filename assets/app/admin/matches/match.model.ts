@@ -8,7 +8,7 @@ export class Match {
 	numCourts: number;
 	dateTime: Date;
 	status: number;
-	matchId?: string;
+	_id?: string;
 
 	// constructor(division: any, venue: any, homeTeam: any, awayTeam: any, numCourts: number, dateTime: Date, status: number, matchId?: string) {
 	// 	this.division = division;
@@ -27,14 +27,12 @@ export class Match {
         }
 	}
 
-	desc() {
-		console.log(this.homeTeam)
-		console.log(typeof this.homeTeam)
-		return this.homeTeam + " v " + this.awayTeam
-	}
-
 	date() {
 		return moment(new Date(this.dateTime)).format("dd Do MMM HH:mm")
+	}
+
+	desc() {
+		return 'match'
 	}
 
 }

@@ -1,0 +1,21 @@
+<div class='division'>
+	<h1 class='format-{{division.format.type}}'>{{ division.name }}</h1>
+	<table class='table table-bordered' *ngIf="teams">
+		<thead>
+			<tr>
+				<th class='right'>Away</th>
+				<th class='centre' *ngFor="let team of teams">{{ team.name() }}</th>
+			</tr>
+			<tr>
+				<th>Home</th>
+				<th colSpan="{{teams.length}}">xxx</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let team of teams">
+		   		<td>{{team.name()}}</td>
+		   		<td *ngFor="let team of teams">x</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

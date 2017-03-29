@@ -64,7 +64,7 @@ export class MatchService {
 			? '?token=' + localStorage.getItem('token')
 			: '';
 
-		return this.http.patch('/match/' + match.matchId + token, body, {headers: headers})
+		return this.http.patch('/match/' + match._id + token, body, {headers: headers})
 			.map((response: Response) => response.json())
 			.catch((error: Response) => {
 				this.errorService.handleError(error.json())
@@ -79,7 +79,7 @@ export class MatchService {
 			? '?token=' + localStorage.getItem('token')
 			: '';
 
-		return this.http.delete('/match/' + match.matchId + token)
+		return this.http.delete('/match/' + match._id + token)
 			.map((response: Response) => response.json())
 			.catch((error: Response) => {
 				this.errorService.handleError(error.json())

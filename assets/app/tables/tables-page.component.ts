@@ -7,7 +7,8 @@ import { GlobalService } from "../global.service"
 @Component({
 	selector: 'app-tables-page',
 	template: `
-		<app-tables-division
+		<h1>Tables</h1>
+        <app-tables-division
 			[division]="division"
 		   	*ngFor="let division of divisions">
 		</app-tables-division>

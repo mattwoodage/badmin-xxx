@@ -3,29 +3,29 @@
 
 		<div class="form-group">
 			<label for="division">Division</label>
-			<select [ngModel]="match?.division" name="division" >
+			<select [ngModel]="match?.division._id" name="division" >
 			   	<option *ngFor="let division of divisions" [ngValue]="division.divisionId">{{division.name}}</option>
 			</select>
 		</div>
 
 		<div class="form-group">
 			<label for="venue">Venue</label>
-			<select [ngModel]="match?.venue" name="venue" >
+			<select [ngModel]="match?.venue._id" name="venue" >
 			   	<option *ngFor="let venue of venues" [ngValue]="venue.venueId">{{venue.name}}</option>
 			</select>
 		</div>
 
 		<div class="form-group">
 			<label for="homeTeam">Home Team</label>
-			<select [ngModel]="match?.homeTeam" name="homeTeam" >
-			   	<option *ngFor="let team of teams" [ngValue]="team.teamId">{{team.name()}}</option>
+			<select [ngModel]="match?.homeTeam._id" name="homeTeam" >
+			   	<option *ngFor="let team of teams" [ngValue]="team._id">{{team.name()}}</option>
 			</select>
 		</div>
 
 		<div class="form-group">
 			<label for="homeTeam">Away Team</label>
-			<select [ngModel]="match?.awayTeam" name="awayTeam" >
-			   	<option *ngFor="let team of teams" [ngValue]="team.teamId">{{team.name()}}</option>
+			<select [ngModel]="match?.awayTeam._id" name="awayTeam" >
+			   	<option *ngFor="let team of teams" [ngValue]="team._id">{{team.name()}}</option>
 			</select>
 		</div>
 

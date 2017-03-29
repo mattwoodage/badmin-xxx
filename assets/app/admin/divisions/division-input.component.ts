@@ -29,6 +29,7 @@ export class DivisionInputComponent implements OnInit {
 			this.division.name = form.value.name;
 			this.division.format = form.value.format;
 			this.division.season = form.value.season;
+			this.division.order = form.value.order;
 			this.divisionService.updateDivision(this.division)
 				.subscribe(
 					result => console.log(result)
@@ -36,7 +37,7 @@ export class DivisionInputComponent implements OnInit {
 			this.division = null;
 		} else {
 			// Create
-			const division = new Division(form.value.name, form.value.format, form.value.season);
+			const division = new Division(form.value.name, form.value.format, form.value.season, form.value.order);
 			this.divisionService.addDivision(division)
 				.subscribe(
 					data => console.log(data),

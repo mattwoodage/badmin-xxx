@@ -74,6 +74,8 @@ export class MatchInputComponent implements OnInit {
 			(match: Match) => this.match = match
 		);
 
+		console.log("MATCH ----" , this.match)
+
 		this.clubService.getClubs()
     		.subscribe(
     			(clubs: Club[]) => {

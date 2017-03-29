@@ -27,16 +27,6 @@ router.get('/', function (req, res, next) {
 	var league;
 	var seasons;
 
-	app.set('matt', 'MATTHEW WOODAGE')
-
-	console.log('[[['+app.get('matt')+']]]')
-
-	jwt.verify('token', 'secret', function(err, decoded) {
-		if (err) {
-    		console.log('***** NOT AUTHENTICATED ******')
-    	}
-    })
-
 	League.findOne({domain: leagueDomain.toLowerCase()}, function(err, _league) {
 		if (err) console.log("error matching league")
 		if (!_league) {

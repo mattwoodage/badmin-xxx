@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { ResultsPageComponent } from "./results-page.component";
+import { ResultsDivisionComponent } from "./results-division.component";
 
 
 @NgModule({
 	declarations: [
-		ResultsPageComponent
+		ResultsPageComponent,
+		ResultsDivisionComponent
     ],
     imports: [
     	CommonModule,

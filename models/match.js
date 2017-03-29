@@ -7,10 +7,10 @@ var Team = require('./team');
 var Venue = require('./venue');
 
 var schema = new Schema({
-	division: {type: Schema.Types.ObjectId, ref: 'Division'},
-	venue: {type: Schema.Types.ObjectId, ref: 'Venue'},
-	homeTeam: {type: Schema.Types.ObjectId, ref: 'Team'},
-	awayTeam: {type: Schema.Types.ObjectId, ref: 'Team'},
+	division: {type: Schema.Types.ObjectId, ref: 'Division', required: true},
+	venue: {type: Schema.Types.ObjectId, ref: 'Venue', required: true},
+	homeTeam: {type: Schema.Types.ObjectId, ref: 'Team', required: true},
+	awayTeam: {type: Schema.Types.ObjectId, ref: 'Team', required: true},
 	numCourts: {type: Number, required: true},
 	dateTime: {type: Date, required: true},
 	status: {type: Number}

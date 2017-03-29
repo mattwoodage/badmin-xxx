@@ -31,6 +31,7 @@ export class DivisionService {
 					result.obj.name,
 					result.obj.format,
 					result.obj.season,
+					result.obj.order,
 					result.obj._id
 					);
 				this.divisions.push(division);
@@ -56,6 +57,7 @@ export class DivisionService {
 						division.name,
 						division.format,
 						division.season,
+						division.order,
 						division._id)
 					);
 				}

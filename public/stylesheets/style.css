@@ -43,9 +43,16 @@ a.danger {
   color: red;
 }
 
+.format-X { background-color:#A5BE00; color:#fff;}
+.format-L { background-color:#FF5964; color:#fff;}
+.format-M { background-color:#35A7FF; color:#fff;}
 .spacing {
   margin-bottom: 20px;
 }
+
+.right {text-align:right;}
+.centre {text-align:center;}
+
 
 input.ng-invalid.ng-touched {
   border: 1px solid red;

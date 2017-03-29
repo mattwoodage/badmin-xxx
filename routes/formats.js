@@ -85,7 +85,7 @@ router.patch('/:id', function (req, res, next) {
     		});
 		}
 		format.name = req.body.name;
-		format.url = req.body.type;
+		format.type = req.body.type;
 		format.orderOfPlay = req.body.orderOfPlay;
 		format.numRubbers = req.body.numRubbers;
 		format.numGames = req.body.numGames;
@@ -98,7 +98,7 @@ router.patch('/:id', function (req, res, next) {
 	    	}
 			res.status(200).json({
     			title: 'Format updated',
-    			error: result
+    			obj: result
     		});
 		})
 	})
@@ -130,7 +130,7 @@ router.delete('/:id', function (req, res, next) {
 	    	}
 			res.status(200).json({
     			title: 'Format deleted',
-    			error: result
+    			obj: result
     		});
 		})
 	})

@@ -1,4 +1,8 @@
-<div class='match'>
-	<h1>{{ this.match.desc() }}</h1>
-	<p>{{ this.match.date() }}</p>
-</div>
+<td class='format-{{ fmt() }}'>{{ this.match.date() }}</td>
+<td>{{ this.match.homeTeam.name() }}</td>
+<td>vs</td>
+<td>{{ this.match.awayTeam.name() }}</td>
+<td>{{ this.match.venue.name }}</td>
+<td>{{ this.match.numCourts }}</td>
+<td>x</td>
+<td>y</td>

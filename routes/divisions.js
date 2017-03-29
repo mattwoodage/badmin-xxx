@@ -9,6 +9,8 @@ var Division = require('../models/division');   //backend mongoose model
 
 router.get('/', function (req, res, next) {
 	Division.find()
+		.sort('order')
+		.populate('format')
 		.exec(function(err, divisions) {
 			if (err) {
 	    		return res.status(500).json({
@@ -25,6 +27,8 @@ router.get('/', function (req, res, next) {
 
 router.get('/:season', function (req, res, next) {
 	Division.find({season:req.params.season})
+		.sort('order')
+		.populate('format')
 		.exec(function(err, divisions) {
 			if (err) {
 	    		return res.status(500).json({
@@ -62,7 +66,8 @@ router.post('/', function (req, res, next) {
     	var division = new Division({
 	    	name: req.body.name,
 	    	format: req.body.format,
-	    	season: req.body.season
+	    	season: req.body.season,
+	    	order: req.body.order
 	    });
 	    division.save(function(err, result) {
 	    	if (err) {
@@ -101,6 +106,7 @@ router.patch('/:id', function (req, res, next) {
 		division.name = req.body.name;
 		division.format = req.body.format;
 		division.season = req.body.season;
+		division.order = req.body.order;
 		division.save(function(err, result) {
 			if (err) {
 				return res.status(500).json({

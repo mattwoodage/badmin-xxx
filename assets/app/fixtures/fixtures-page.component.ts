@@ -5,10 +5,25 @@ import { Match } from "../admin/matches/match.model";
 @Component({
 	selector: 'app-fixtures-page',
 	template: `
-		<app-fixtures-match
-            [match]="match"
-               *ngFor="let match of matches">
-        </app-fixtures-match>
+    <h1>Fixtures</h1>
+    <table class='table table-bordered'>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Home Team</th>
+                <th></th>
+                <th>Away Team</th>
+                <th>Venue</th>
+                <td>Courts</td>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr [match]="match" app-fixtures-match *ngFor="let match of matches">
+            </tr>
+        </tbody>
+    </table>
 	`
 })
 
