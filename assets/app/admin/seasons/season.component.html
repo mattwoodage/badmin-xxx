@@ -1,14 +1,13 @@
-<article class="panel panel-default">
-	<div class="panel-body">
-	<h3>{{ season.name }}</h3>
-	</div>
-	<footer class="panel-footer">
-		<div class="author">
+<div class="card">
+	<div class="card-block">
+		<h4 class="card-title">{{ season.name }}</h4>
+		<p class="card-text">
 			{{ season.status }}
-		</div>
-		<div class="config">
-			<a (click)="onEdit()">Edit</a>
-			<a (click)="onDelete()">Delete</a>
-		</div>
-	</footer>
-</article>
+		</p>
+	</div>
+	<div class="card-footer">
+		<button class="btn btn-primary" (click)="onEdit()">Edit</button>
+		<button class="btn btn-danger" (click)="onDelete()">Delete</button>
+	</div>
+</div>
+<br/>

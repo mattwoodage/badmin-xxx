@@ -59,9 +59,14 @@ input.ng-invalid.ng-touched {
 }
 
 #topnav li.nav-item { margin-right:1px; }
-#topnav li.nav-item a.nav-link { background-color:#333; }
-#topnav li.nav-item.active a.nav-link { background-color:#f8f7f6; }
+#topnav li.nav-item a.nav-link { background-color:#333; color:#fff; }
+#topnav li.nav-item.active a.nav-link { background-color:#f8f7f6; color:#333; }
 
+
+.admin-header { background-color:#ffd400; padding-top:5px; }
+.admin-header li.nav-item { margin-right:1px; }
+.admin-header li.nav-item a.nav-link { background-color:#333; color:#fff; }
+.admin-header li.nav-item.active a.nav-link { background-color:#f8f7f6; color:#333; }
 
 .date {
   width:14.28%;

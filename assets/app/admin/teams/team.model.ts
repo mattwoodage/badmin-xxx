@@ -12,7 +12,7 @@ export class Team {
 	}
 
 	name() {
-		return this.club.name + ' ' + this.suffix;
+		return this.club.name + ' ' + (this.suffix && this.suffix || '');
 	}
 
 	matchesPlayed() {

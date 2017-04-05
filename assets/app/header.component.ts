@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Params, Routes, RouterModule } from "@angular/router";
+import { ActivatedRoute, Params, Routes, RouterModule, Router } from "@angular/router";
 import { AuthenticationComponent } from "./auth/authentication.component";
 import { AuthService } from "./auth/auth.service"
 
@@ -47,6 +47,25 @@ import { League } from "./admin/leagues/league.model";
 					</ul>
 				</nav>
 			</div>
+			<div class="admin-header row" *ngIf="showAdmin()">
+				<nav class="col-md-10 col-md-offset-1">
+					<ul class="nav">
+						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="['/messages']">Messenger</a></li>
+						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="['/admin/leagues']">Leagues</a></li>
+						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="['/admin/seasons']">Seasons</a></li>
+						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="['/admin/divisions']">Divisions</a></li>
+						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="['/admin/formats']">Formats</a></li>
+
+						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="['/admin/matches']">Matches</a></li>
+
+						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="['/admin/venues']">Venues</a></li>
+						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="['/admin/clubs']">Clubs</a></li>
+						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="['/admin/teams']">Teams</a></li>
+						<li class="nav-item" routerLinkActive="active"><a class="nav-link" [routerLink]="['/admin/players']">Players</a></li>
+
+					</ul>
+				</nav>
+			</div>
 	`
 })
 
@@ -55,7 +74,8 @@ export class HeaderComponent implements OnInit {
 		private authService: AuthService,
 		private appComponent: AppComponent,
 		private globalService: GlobalService,
-		private route: ActivatedRoute
+		private route: ActivatedRoute,
+		private router: Router
 	) {}
 
 	currentLeague: League;
@@ -74,6 +94,14 @@ export class HeaderComponent implements OnInit {
 
     isLoggedIn() {
 		return this.authService.isLoggedIn()
+	}
+
+	withinAdmin() {
+		return this.router.url.indexOf('/admin') != -1
+	}
+
+	showAdmin() {
+		return this.withinAdmin() && this.isLoggedIn()
 	}
 
     onSubmit(form: NgForm) {

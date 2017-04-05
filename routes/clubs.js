@@ -9,7 +9,7 @@ var Club = require('../models/club');   //backend mongoose model
 
 router.get('/', function (req, res, next) {
 	Club.find()
-		.sort({name: -1})
+		.sort({name: 1})
 		.exec(function(err, clubs) {
 			if (err) {
 	    		return res.status(500).json({
